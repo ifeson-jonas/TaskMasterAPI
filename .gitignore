@@ -1,0 +1,7 @@
+/bin/
+/obj/
+*.user
+.env
+TaskMaster.db
+appsettings.Development.json
+.npm-debug.log
