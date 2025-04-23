@@ -21,10 +21,4 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Adicione ao seu appsettings.json:
-// Jwt: {
-//   Key: SUA_CHAVE_SECRETA_MUITO_SEGURA_AQUI,
-//   Issuer: TaskMasterAPI,
-//   Audience: TaskMasterAPI-Users
-// }
 
