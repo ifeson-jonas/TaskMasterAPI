@@ -40,3 +40,4 @@ TestResults/
 
 # Outros arquivos específicos do seu projeto
 TaskMasterAPI.http
+*.bkp
