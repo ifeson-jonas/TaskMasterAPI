@@ -1,3 +1,7 @@
+using TaskMasterAPI.Models.Entities;
+
+
+
 namespace TaskMasterAPI.Interfaces.Repositories;
 
 public interface ITaskRepository
@@ -10,4 +14,3 @@ public interface ITaskRepository
     Task DeleteAsync(int id);
     Task<bool> ExistsAsync(int id);
 }
-

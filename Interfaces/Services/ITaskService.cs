@@ -1,3 +1,7 @@
+using TaskMasterAPI.Models.Entities;
+
+
+
 namespace TaskMasterAPI.Interfaces.Services;
 
 public interface ITaskService
@@ -16,4 +20,3 @@ public class ServiceResult<T>
     public string ErrorMessage { get; set; } = string.Empty;
     public int StatusCode { get; set; }
 }
-

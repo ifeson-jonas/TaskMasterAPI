@@ -22,6 +22,8 @@ public class TaskItem
     
     [Range(1, 3, ErrorMessage = "A prioridade deve ser entre 1 (Baixa) e 3 (Alta)")]
     public int Priority { get; set; }
+
+    public int UserId { get; set; }
 }
 
 // Validador customizado para data futura
@@ -32,4 +34,3 @@ public class FutureDateAttribute : ValidationAttribute
         return value is DateTime date && date > DateTime.Now;
     }
 }
-
