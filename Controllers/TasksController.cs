@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using TaskMasterAPI.Data;
+using TaskMasterAPI.Interfaces.Services;
 using TaskMasterAPI.Models.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace TaskMasterAPI.Controllers;
 
@@ -9,24 +8,54 @@ namespace TaskMasterAPI.Controllers;
 [Route("api/[controller]")]
 public class TasksController : ControllerBase
 {
-    private readonly AppDbContext _context;
-    
-    public TasksController(AppDbContext context)
+    private readonly ITaskService _taskService;
+
+    public TasksController(ITaskService taskService)
     {
-        _context = context;
+        _taskService = taskService;
     }
 
+    // Simulação de userId fixo (substituir por auth futuramente)
+    private int GetUserId() => 1;
+
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
+    public async Task<IActionResult> GetAll()
     {
-        return await _context.Tasks.ToListAsync();
+        var result = await _taskService.GetAllUserTasksAsync(GetUserId());
+        if (!result.Success) return BadRequest(result.ErrorMessage);
+        return Ok(result.Data);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _taskService.GetTaskAsync(id, GetUserId());
+        if (!result.Success) return NotFound(result.ErrorMessage);
+        return Ok(result.Data);
     }
 
     [HttpPost]
-    public async Task<ActionResult<TaskItem>> CreateTask(TaskItem task)
+    public async Task<IActionResult> Create(TaskItem task)
     {
-        _context.Tasks.Add(task);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
+        var result = await _taskService.CreateTaskAsync(task, GetUserId());
+        if (!result.Success) return BadRequest(result.ErrorMessage);
+        return CreatedAtAction(nameof(GetById), new { id = result.Data?.Id }, result.Data);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, TaskItem task)
+    {
+        var result = await _taskService.UpdateTaskAsync(id, task, GetUserId());
+        if (!result.Success) return BadRequest(result.ErrorMessage);
+        return Ok(result.Data);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _taskService.DeleteTaskAsync(id, GetUserId());
+        if (!result.Success) return BadRequest(result.ErrorMessage);
+        return NoContent();
     }
 }
+
