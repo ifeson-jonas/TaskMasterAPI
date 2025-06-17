@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+pre {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: left;
+}

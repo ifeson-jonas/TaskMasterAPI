@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker-config/Dockerfile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - .:/src
+      - ~/.nuget:/root/.nuget
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker-config/Dockerfile.frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

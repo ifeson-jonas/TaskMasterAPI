@@ -1,0 +1,43 @@
+# Pastas de build
+bin/
+obj/
+
+# Configurações específicas de usuário do Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Arquivos de ambiente
+.env
+appsettings.Development.json
+TaskMaster.db
+
+# Logs e outros
+*.log
+.npm-debug.log
+restore.log
+
+# Arquivos do Rider/JetBrains
+.idea/
+
+# Arquivos temporários do sistema
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Testes
+TestResults/
+*.TestResults
+
+# Arquivos gerados do VS
+.vs/
+
+# Outros arquivos específicos do seu projeto
+TaskMasterAPI.http
+*.bkp
