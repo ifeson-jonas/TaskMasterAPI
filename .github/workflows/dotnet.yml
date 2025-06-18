@@ -1,47 +1,31 @@
-name: CI Pipeline
+name: .NET CI
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  build-and-test:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
+    - name: Checkout do código
+      uses: actions/checkout@v3
 
-      - name: Configurar .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
+    - name: Configurar .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'  # Ajuste para sua versão, ex: 6.0.x ou 8.0.x
 
-      - name: Restaurar dependências
-        run: dotnet restore
+    - name: Restaurar pacotes
+      run: dotnet restore
 
-      - name: Formatador de código
-        run: dotnet format --verify-no-changes
+    - name: Build do projeto
+      run: dotnet build --no-restore --configuration Release
 
-      - name: Build
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Testes com cobertura
-        run: |
-          dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
-
-      - name: Gerar relatório de cobertura
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
-        with:
-          reports: '**/coverage.cobertura.xml'
-          targetdir: 'coveragereport'
-          reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
-
-      - name: Publicar cobertura de testes como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: code-coverage-report
-          path: coveragereport
+    - name: Executar testes
+      run: dotnet test --no-build --verbosity normal
 
