@@ -40,7 +40,7 @@ jobs:
           reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
 
       - name: Publicar relatório como artefato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: relatorio-cobertura
           path: coveragereport
