@@ -40,7 +40,7 @@ jobs:
           reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
 
       - name: Publicar cobertura de testes como artefato
-        uses: actions/upload-artifact@v3
+        uses: github-actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: coveragereport
