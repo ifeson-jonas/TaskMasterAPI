@@ -1,74 +1,130 @@
-![taskmaster-logo](https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png)
+# TaskMasterAPI 🧠📋
 
-# TaskMasterAPI [![push](https://github.com/ifeson-jonas/TaskMasterAPI/workflows/push/badge.svg?branch=main&event=push)](https://github.com/ifeson-jonas/TaskMasterAPI/actions)
+API RESTful feita em C# com .NET 8, usando Entity Framework Core, LINQ e arquitetura em camadas. Projeto criado para estudo prático de CRUD e boas práticas em back-end.
 
-> "Organize suas tarefas com poder e performance — feito em **C#**!"
+![CI](https://github.com/ifeson-jonas/TaskMasterAPI/actions/workflows/dotnet.yml/badge.svg)
 
-TaskMasterAPI é uma API REST desenvolvida em **C# (.NET 8.0)** com o objetivo de facilitar o gerenciamento de tarefas e produtividade pessoal ou profissional.
+---
 
-## 🚀 Vantagens de desenvolver com C#
+## 🎥 Demonstração
 
-- **Desempenho**: O .NET 8 oferece alta performance para aplicações web.
-- **Ecosistema Rico**: Testes, documentação, segurança, tudo integrado.
-- **Maturidade**: C# é uma linguagem estável e moderna, ideal para APIs robustas.
+<div align="center">
+  <img src="docs/demo.gif" alt="Demonstração da API" width="700"/>
+</div>
 
-## 🛠️ Como funciona
+---
 
-Ao clonar este repositório, você encontrará:
+## 🚀 Tecnologias
 
-- `.github/workflows/` com o pipeline de CI usando **GitHub Actions**
-- Projeto principal em `TaskMasterAPI/`
-- Testes automatizados em `TaskMasterAPI.Tests/`
+- C# / .NET 8
+- Entity Framework Core
+- LINQ
+- xUnit (testes)
+- GitHub Actions (CI/CD)
+- Docker (em progresso)
+- PostgreSQL ou SQL Server (configurável via appsettings)
 
-## ✅ Requisitos para rodar
+---
 
-- [.NET SDK 8.0+](https://dotnet.microsoft.com/en-us/download)
-- Git instalado
-
-## ▶️ Executando localmente
-
-\`\`\`bash
-git clone https://github.com/ifeson-jonas/TaskMasterAPI.git
-cd TaskMasterAPI
-dotnet restore
-dotnet build
-dotnet run
-\`\`\`
-
-## 🧪 Rodando os testes
+## 📂 Estrutura do Projeto
 
 \`\`\`bash
-dotnet test
+TaskMasterAPI/
+├── Controllers/          # Controladores REST
+├── Data/                 # Contexto EF Core e configuração do banco
+├── Models/               # Entidades do domínio
+├── Interfaces/           # Interfaces para repositórios e serviços
+├── Repositories/         # Implementação do acesso a dados
+├── Services/             # Regras de negócio
+├── Migrations/           # Migrações EF Core
+├── Tests/                # Projetos de testes unitários
+├── appsettings.json      # Configurações da aplicação
+└── Program.cs            # Ponto de entrada da aplicação
 \`\`\`
 
-## ⚙️ CI/CD com GitHub Actions
+---
 
-Este projeto usa GitHub Actions para:
+## ⚙️ Como rodar localmente
 
-- Validar o build com `dotnet build`
-- Executar testes com `dotnet test`
-- Aplicar formatação com `dotnet format`
-- Gerar artefatos para publicação
+1. Clone o repositório:
+   \`\`\`bash
+   git clone https://github.com/ifeson-jonas/TaskMasterAPI.git
+   cd TaskMasterAPI
+   \`\`\`
 
-## ✨ Contribuindo
+2. Restaure os pacotes:
+   \`\`\`bash
+   dotnet restore TaskMasterSolution.sln
+   \`\`\`
 
-Pull requests são muito bem-vindos! Se tiver sugestões de melhoria, abra uma issue ou envie um PR.
+3. Compile o projeto:
+   \`\`\`bash
+   dotnet build TaskMasterSolution.sln --no-restore
+   \`\`\`
 
-## 📄 Licença
+4. Execute a aplicação:
+   \`\`\`bash
+   dotnet run --project TaskMasterAPI.csproj
+   \`\`\`
 
-MIT © 2025 [Jonas](https://github.com/ifeson-jonas)
+5. Acesse no navegador:
+   \`\`\`
+   http://localhost:5000
+   \`\`\`
 
+---
 
-## 🤝 Contribuindo
+## 🧪 Testes
 
-Esse projeto foi desenvolvido como parte da minha jornada de aprendizado em back-end com C#.
-Se você tiver sugestões de melhoria, encontrou um bug, ou quer contribuir com novas funcionalidades, será muito bem-vindo(a)!
+Execute os testes unitários com:
 
-Abra uma [Issue](https://github.com/ifeson-jonas/TaskMasterAPI/issues) ou envie um Pull Request. 
-Estou sempre aberto a feedbacks — evoluir em comunidade é parte do processo. 🚀
+\`\`\`bash
+dotnet test TaskMasterSolution.sln
+\`\`\`
+
+---
+
+## 🐳 Docker
+
+Para usar o Docker (em progresso), crie sua imagem e rode o container:
+
+\`\`\`bash
+docker build -t taskmasterapi .
+docker run -p 5000:5000 taskmasterapi
+\`\`\`
+
+---
+
+## ⚙️ Configuração
+
+Configure a string de conexão no \`appsettings.json\` ou via variável ambiente:
+
+\`\`\`json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=TaskMaster;User Id=sa;Password=your_password;"
+  }
+}
+\`\`\`
+
+---
+
+## 🔗 Links úteis
+
+- Repositório: https://github.com/ifeson-jonas/TaskMasterAPI
+- Documentação oficial .NET: https://docs.microsoft.com/dotnet/
+- Entity Framework Core: https://docs.microsoft.com/ef/core/
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Faça um fork, crie sua branch e envie pull request.
 
 ---
 
 ## 📄 Licença
 
-Este projeto está licenciado sob os termos da licença [MIT](LICENSE).
+MIT License
+
+
