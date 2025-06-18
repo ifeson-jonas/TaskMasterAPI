@@ -21,11 +21,11 @@ jobs:
         dotnet-version: '8.0.x'  # Ajuste para sua versão, ex: 6.0.x ou 8.0.x
 
     - name: Restaurar pacotes
-      run: dotnet restore
+      run: dotnet restore TaskMasterSolution.sln
 
     - name: Build do projeto
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
     - name: Executar testes
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test TaskMasterSolution.sln --no-build --verbosity normal
 
