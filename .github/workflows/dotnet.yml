@@ -25,6 +25,6 @@ jobs:
       - name: Compilar projeto
         run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
-      - name: Rodar testes
-        run: dotnet test Tests/Tests.csproj --no-build --verbosity normal
+      - name: Rodar testes (com build)
+        run: dotnet test Tests/Tests.csproj --configuration Release --verbosity normal
 
