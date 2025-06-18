@@ -1,0 +1,46 @@
+name: CI Base Pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restaurar dependências
+        run: dotnet restore
+
+      - name: Verificar formatação de código
+        run: dotnet format --verify-no-changes
+
+      - name: Compilar o projeto
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Executar testes com cobertura
+        run: |
+          dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
+
+      - name: Gerar relatório de cobertura
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
+        with:
+          reports: '**/coverage.cobertura.xml'
+          targetdir: 'coveragereport'
+          reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
+
+      - name: Publicar relatório como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: relatorio-cobertura
+          path: coveragereport
