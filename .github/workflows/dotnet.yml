@@ -8,30 +8,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-    - name: Verificar SDK instalado
-      run: dotnet --info
+      - name: Configurar .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Configurar .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
+      - name: Restaurar dependências
+        run: dotnet restore TaskMasterSolution.sln
 
-    - name: Restaurar pacotes
-      run: dotnet restore TaskMasterSolution.sln
+      - name: Compilar projeto
+        run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
-    - name: Limpar build anterior
-      run: dotnet clean TaskMasterSolution.sln
-
-    - name: Build do projeto
-      run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
-
-    - name: Executar testes
-      run: dotnet test TaskMasterSolution.sln --no-build --verbosity detailed
+      - name: Rodar testes
+        run: dotnet test Tests/Tests.csproj --no-build --verbosity normal
 
