@@ -26,5 +26,5 @@ jobs:
         run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
       - name: Executar testes
-        run: dotnet test TaskMasterSolution.sln --no-build --verbosity normal
+        run: dotnet test TaskMasterSolution.sln --no-build --logger trx --results-directory TestResults
 
