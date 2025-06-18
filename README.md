@@ -57,3 +57,18 @@ Pull requests são muito bem-vindos! Se tiver sugestões de melhoria, abra uma i
 ## 📄 Licença
 
 MIT © 2025 [Jonas](https://github.com/ifeson-jonas)
+
+
+## 🤝 Contribuindo
+
+Esse projeto foi desenvolvido como parte da minha jornada de aprendizado em back-end com C#.
+Se você tiver sugestões de melhoria, encontrou um bug, ou quer contribuir com novas funcionalidades, será muito bem-vindo(a)!
+
+Abra uma [Issue](https://github.com/ifeson-jonas/TaskMasterAPI/issues) ou envie um Pull Request. 
+Estou sempre aberto a feedbacks — evoluir em comunidade é parte do processo. 🚀
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob os termos da licença [MIT](LICENSE).
