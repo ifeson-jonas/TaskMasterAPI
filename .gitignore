@@ -46,3 +46,4 @@ obj/
 *.backup
 packages.lock.json
 Migrations/
+backup/
