@@ -19,12 +19,12 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restaurar pacotes
+      - name: Restaurar dependências
         run: dotnet restore TaskMasterSolution.sln
 
-      - name: Build
+      - name: Build do projeto
         run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
-      - name: Testes
-        run: dotnet test Tests/Tests.csproj --no-build --verbosity normal
+      - name: Executar testes
+        run: dotnet test TaskMasterSolution.sln --no-build --verbosity normal
 
