@@ -14,17 +14,17 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar .NET SDK
+      - name: Instalar .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
 
-      - name: Restaurar dependências
+      - name: Restaurar pacotes
         run: dotnet restore TaskMasterSolution.sln
 
-      - name: Compilar projeto
+      - name: Build do projeto
         run: dotnet build TaskMasterSolution.sln --no-restore --configuration Release
 
-      - name: Rodar testes
+      - name: Executar testes
         run: dotnet test Tests/Tests.csproj --no-build --configuration Release --verbosity normal
 
